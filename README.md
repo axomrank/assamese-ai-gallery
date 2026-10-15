@@ -1,81 +1,35 @@
-# 🪔 Assamese Heritage & Legends — AI Art Gallery
+# Assamese Heritage & Legends — AI Art Gallery
 
-> A curated, interactive gallery featuring **58 AI-generated artworks** celebrating the royal history, cultural luminaries, folklore spirits, sacred Namghars, and traditional architecture of Assam.
+An offline-capable collection of **58 AI-generated artworks**, with subject/category browsing, original and personal tags, ratings, historical-review flags, and synchronized side-by-side image comparison.
 
-🌐 **Live Demo:** [https://angsumi.github.io/assamese-ai-gallery/](https://angsumi.github.io/assamese-ai-gallery/)
+## Use the gallery
 
----
+Open `index.html` or the GitHub Pages site. Choose two **Compare this image** boxes and click **Compare**. Zoom with the linked slider or scroll wheel; drag either image to pan both. Select an artwork to rate it, add comma-separated tags, flag details for correction, or record notes. Existing artwork IDs are preserved as direct links (`#sukapha-portrait`, for example).
 
-## 🏛️ Gallery Overview & Categories
+Categories remain History & Royalty, Folklore & Legends, Sacred & Culture, Traditional Architecture, and Notable Figures. Subjects and source tags come from the original catalogue, with titles and descriptions preserved. No unverified chronology has been invented. All 58 files remain, including one exact duplicate pair; `duplicate-review.html` lets you compare exact copies, perceptual-similarity suggestions, and same-subject variants, then export choices without deleting files automatically.
 
-| Category | Icon | Count | Description |
-| :--- | :---: | :---: | :--- |
-| **History & Royalty** | 👑 | 11 | Chaolung Sukapha, Ahom noble commanders, Patra Mantri ministers, and Queen Birangana Sati Sadhani. |
-| **Notable Figures & Luminaries** | 📜 | 27 | Srimanta Sankardev, Kalaguru Bishnu Prasad Rabha, Rupkonwar Jyoti Prasad Agarwala, Hemchandra Baruah, and renaissance pioneers. |
-| **Folklore & Legends** | 👻 | 4 | Spectral village legends including Japi Pindha Bhoot and Hetuka Xulin. |
-| **Sacred & Culture** | 🪔 | 3 | Multi-tiered Guru Asana (Singhasan) and sacred wood carvings (Kurma, Gaja, Singha) from Assamese Namghars. |
-| **Traditional Architecture** | 🏡 | 12 | Classic earthquake-resistant Assam-type houses, verandahs (Chora-Ghar), village ponds, and rural homesteads. |
+Personal reviews stay in this browser. **Export personal reviews** saves portable JSON; **Import personal reviews** merges matching entries, replacing reviews for matching IDs and image checksums. Local files and the hosted website use separate browser storage. The storage key and export schema are separate from the AHOM library, so the two galleries do not overwrite each other's notes.
 
----
+## Assets and metadata
 
-## ✨ Features
+- `images/`: 58 original artworks with original filenames and folders unchanged.
+- `data/gallery.json`: original gallery metadata, retained unchanged.
+- `catalog.json` / `catalog.js`: review catalogue, original checksums and offline browser data.
+- `thumbnails/`: lightweight WebP previews; originals load on demand.
+- `gallery.js`, `gallery.css`, `gallery-template.html`: the gallery interface.
+- `build_gallery.py`: verifies original checksums and rebuilds thumbnail/catalogue outputs (requires Pillow).
+- `backup_library.py`: creates a verified local ZIP with SHA-256 sidecar under ignored `backups/`.
 
-- **⚡ Instant Search & Filtering**: Search across artwork names, descriptions, historical periods, and tags.
-- **🎨 Assamese Cultural Aesthetic**: Warm Muga Silk gold (`#E5B044`), Eri crimson, and Assam tea green palette with glassmorphism effects.
-- **🌓 Light & Dark Modes**: Seamless theme switching with automatic system preference detection.
-- **🔍 High-Res Lightbox Modal**:
-  - Zoom in/out (+ / -) and 100% reset controls.
-  - Keyboard navigation (Left / Right arrow keys, Escape to close).
-  - Touch swipe support on mobile devices.
-  - Direct deep-linking via URL hash (e.g. `#sukapha-portrait`).
-  - High-res image download & shareable link copy.
-- **📱 Fully Responsive**: Optimized for ultra-wide desktops, laptops, tablets, and smartphones.
-- **🚀 Zero-Dependency Static App**: Pure modern HTML5, CSS3, and JavaScript — lightning-fast on GitHub Pages.
+These images are AI-generated interpretations, not historical photographs, verified likenesses, or evidence of historical appearance. Source captions, identity associations, costumes, architecture and cultural details may need review. A personal review checkbox records your review and does not establish historical accuracy.
 
----
+## Rebuild and back up
 
-## 📂 Project Structure
-
-```
-├── .github/
-│   └── workflows/
-│       └── deploy.yml         # GitHub Actions automated Pages deployment
-├── css/
-│   └── style.css              # Custom styling, dark/light theme, and animations
-├── data/
-│   └── gallery.json           # Structured metadata, tags, and descriptions
-├── images/
-│   ├── folklore-and-legends/   # Folklore & ghost lore artworks
-│   ├── history-and-royalty/   # Ahom kings, ministers & queens
-│   ├── notable-figures/       # Assamese cultural luminaries & scholars
-│   ├── sacred-and-culture/    # Namghar sanctums & sacred motifs
-│   └── traditional-architecture/ # Assam-type houses & country homesteads
-├── js/
-│   └── app.js                 # Gallery engine, search, filters & lightbox
-├── .nojekyll                  # GitHub Pages static asset flag
-├── index.html                 # Main gallery webpage
-└── README.md                  # Project documentation
+```sh
+python -m pip install pillow
+python build_gallery.py
+python backup_library.py
 ```
 
----
+The backup script verifies original image checksums, ZIP integrity and archived image checksums. Copy the ZIP and SHA-256 sidecar to another drive or cloud storage. Export personal review JSON separately and retain it alongside the backup; the script cannot access browser storage.
 
-## 💻 Local Development & Preview
-
-To run the gallery locally:
-
-```bash
-# Clone the repository
-git clone https://github.com/Angsumi/assamese-ai-gallery.git
-cd assamese-ai-gallery
-
-# Start a local web server (using Python 3)
-python3 -m http.server 8000
-```
-
-Open your browser at `http://localhost:8000` to explore the gallery.
-
----
-
-## 📜 License & Credits
-
-Artworks generated and curated for the preservation and artistic celebration of Assamese culture, history, and folklore. Open source and free to share.
+Other repository material, including Instagram cards and college research documents, remains unchanged and is not mixed into the 58-artwork gallery. GitHub Pages deploys via the existing workflow.
